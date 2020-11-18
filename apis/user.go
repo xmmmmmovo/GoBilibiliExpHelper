@@ -3,7 +3,6 @@ package apis
 import (
 	"GoBilibiliExpHelper/http"
 	"GoBilibiliExpHelper/models"
-	"log"
 )
 
 func Login() {
@@ -14,16 +13,19 @@ func UserInfo() (*models.UserInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Println(resp)
+	data := *resp
 	return &models.UserInfo{
-		IsLogin:       false,
-		Uname:         "",
-		VipStatus:     0,
-		VipType:       0,
-		CurrentLevel:  0,
-		Money:         0,
-		BcoinBalance:  0,
-		CouponBalance: 0,
+		IsLogin:   data["isLogin"].(bool),
+		Uname:     data["uname"].(string),
+		VipStatus: int(data["vipStatus"].(float64)),
+		VipType:   int(data["vipType"].(float64)),
+		CurrentLevel: int(data["level_info"].
+		(map[string]interface{})["current_level"].(float64)),
+		Money: data["money"].(float64),
+		BcoinBalance: data["wallet"].
+		(map[string]interface{})["bcoin_balance"].(float64),
+		CouponBalance: data["wallet"].
+		(map[string]interface{})["coupon_balance"].(float64),
 	}, nil
 }
 
