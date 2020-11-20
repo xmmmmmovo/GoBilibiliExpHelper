@@ -3,7 +3,7 @@ name: Test And Lint
 on: [push, pull_request]
 
 jobs:
-  daily:
+  test:
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Shanghai
@@ -25,5 +25,40 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - run: make build
-      - run: ./build/main
+
+      - name: Run Unit tests.
+        run: make test-coverage
+
+      - name: Upload Coverage report to CodeCov
+        uses: codecov/codecov-action@v1.0.0
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: ./coverage.txt
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.14.2'
+      - run: go version
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/go/pkg/mod              # Module download cache
+            ~/.cache/go-build         # Build cache (Linux)
+            ~/Library/Caches/go-build # Build cache (Mac)
+            '%LocalAppData%\go-build' # Build cache (Windows)
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Lint Go Code
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin # temporary fix. See https://github.com/actions/setup-go/issues/14
+          go get -u golang.org/x/lint/golint
+          make lint
