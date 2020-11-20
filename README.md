@@ -1,6 +1,6 @@
 # GoBilibiliExpHelper
 
-![test](https://github.com/xmmmmmovo/GoBilibiliExpHelper/workflows/Test And Lint/badge.svg) [![codecov](https://codecov.io/gh/xmmmmmovo/GoBilibiliExpHelper/branch/main/graph/badge.svg?token=0OW3ZT44OU)](https://codecov.io/gh/xmmmmmovo/GoBilibiliExpHelper)
+![test](https://github.com/xmmmmmovo/GoBilibiliExpHelper/workflows/Test%20And%20Lint/badge.svg) [![codecov](https://codecov.io/gh/xmmmmmovo/GoBilibiliExpHelper/branch/main/graph/badge.svg?token=0OW3ZT44OU)](https://codecov.io/gh/xmmmmmovo/GoBilibiliExpHelper)
 
 - [x] **每天自动登录，获取经验**
 - [ ] **每天自动观看、分享、投币视频** *（支持指定想要支持的up主，优先选择配置的up主的视频，不配置则随机选取视频）*
