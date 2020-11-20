@@ -1,0 +1,34 @@
+name: Daily Task
+
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+  schedule:
+    - cron: '10 1 * * *'
+    # cron表达式，Actions时区是UTC时间，所以上午9点要往前推8个小时
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.14.2'
+      - run: go version
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/go/pkg/mod              # Module download cache
+            ~/.cache/go-build         # Build cache (Linux)
+            ~/Library/Caches/go-build # Build cache (Mac)
+            '%LocalAppData%\go-build' # Build cache (Windows)
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - run: sudo sh ./run.sh
