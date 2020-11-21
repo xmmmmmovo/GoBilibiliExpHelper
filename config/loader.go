@@ -46,7 +46,7 @@ func SaveConfig(path string) error {
 }
 
 func EnvReader() error {
-	BILI_JCT := os.Getenv("BILIJCT")
+	BILI_JCT := os.Getenv("BILI_JCT")
 	DEDEUSERID := os.Getenv("DEDEUSERID")
 	SESSDATA := os.Getenv("SESSDATA")
 
