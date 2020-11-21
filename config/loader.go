@@ -50,6 +50,10 @@ func EnvReader() error {
 	DEDEUSERID := os.Getenv("DEDEUSERID")
 	SESSDATA := os.Getenv("SESSDATA")
 
+	log.Println(BILI_JCT)
+	log.Println(DEDEUSERID)
+	log.Println(SESSDATA)
+
 	if AppConfig.User.Mode == "token" {
 		if AppConfig.User.Token.BILI_JCT == "" &&
 			BILI_JCT == "" {
