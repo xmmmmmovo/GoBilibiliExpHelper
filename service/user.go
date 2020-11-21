@@ -9,6 +9,7 @@ import (
 	"log"
 )
 
+// CheckUserModeAndFetchUserInfo 校检用户模式和获取用户信息
 func CheckUserModeAndFetchUserInfo() error {
 	utils.PrintStart("获取用户信息")
 	if config.AppConfig.User.Mode == "login" {
