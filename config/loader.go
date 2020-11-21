@@ -14,12 +14,12 @@ func LoadConfig(path string) error {
 	utils.PrintStart("读取配置")
 	fileBytes, err := ioutil.ReadFile(path)
 	if err != nil {
-		log.Fatalln("打开配置文件失败！")
+		log.Println("打开配置文件失败！")
 		return err
 	}
 	err = yaml.Unmarshal(fileBytes, AppConfig)
 	if err != nil {
-		log.Fatalln("读取配置文件失败！")
+		log.Println("读取配置文件失败！")
 		return err
 	}
 	log.Println("读取成功！")
@@ -33,12 +33,12 @@ func SaveConfig(path string) error {
 
 	res, err := yaml.Marshal(AppConfig)
 	if err != nil {
-		log.Fatalln("重构配置文件失败！")
+		log.Println("重构配置文件失败！")
 		return err
 	}
 	err = ioutil.WriteFile(path, res, os.ModePerm)
 	if err != nil {
-		log.Fatalln("写入配置文件失败！")
+		log.Println("写入配置文件失败！")
 		return err
 	}
 	log.Println("写入成功！")
