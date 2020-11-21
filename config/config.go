@@ -11,7 +11,7 @@ type Config struct {
 		Token struct {
 			DEDEUSERID string `yaml:"DEDEUSERID"`
 			SESSDATA   string `yaml:"SESSDATA"`
-			BILIJCT    string `yaml:"BILIJCT"`
+			BILIJCT    string `yaml:"BILI_JCT"`
 		}
 	}
 	Home struct {
@@ -21,10 +21,15 @@ type Config struct {
 		On bool `yaml:"on"`
 	}
 	Comic struct {
-		On bool `yaml:"on"`
+		On       bool   `yaml:"on"`
+		Platform string `yaml:"platform"`
 	}
 	Mail struct {
-		On bool `yaml:"on"`
+		On   bool   `yaml:"on"`
+		User string `yaml:"user"`
+		Pass string `yaml:"pass"`
+		Host string `yaml:"host"`
+		Port string `yaml:"port"`
 	}
 	Ext struct {
 		On    bool `yaml:"on"`

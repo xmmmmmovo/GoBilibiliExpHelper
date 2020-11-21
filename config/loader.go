@@ -53,6 +53,7 @@ func EnvReader() error {
 	SESSDATA := os.Getenv("SESSDATA")
 
 	if AppConfig.User.Mode == "token" {
+
 		if AppConfig.User.Token.BILIJCT == "" {
 			if BiliJct == "" {
 				return errors.ConfigError

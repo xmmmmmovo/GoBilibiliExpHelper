@@ -20,8 +20,13 @@ func main() {
 	}
 	http.OnResponse(func(resp *map[string]interface{}) (*map[string]interface{}, error) {
 		data := * resp
-		if int(data["code"].(float64)) != 0 {
+		switch data["code"].(type) {
+		case string:
 			return nil, errors.RespCodeError
+		case float64:
+			if int(data["code"].(float64)) != 0 {
+				return nil, errors.RespCodeError
+			}
 		}
 		r := data["data"].(map[string]interface{})
 		return &r, nil
@@ -31,7 +36,13 @@ func main() {
 		log.Println(err.Error())
 		return
 	}
-
+	config.WaitGroup.Add(1)
+	go service.MangaSignIn()
+	
 	config.WaitGroup.Wait()
+	log.Println("输出错误信息：")
+	for k, v := range config.ErrorSlice {
+		log.Println(k, " : ", v.Error())
+	}
 	log.Println("全部完成")
 }

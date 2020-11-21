@@ -11,7 +11,7 @@ func Login() {
 
 // UserInfo 获取用户信息操作
 func UserInfo() (*models.UserInfo, error) {
-	resp, err := http.GET(UserInfoURL)
+	resp, err := http.GET(UserInfoURL, nil, nil)
 	if err != nil {
 		return nil, err
 	}

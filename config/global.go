@@ -11,3 +11,7 @@ var AppConfig = new(Config)
 var AppUser *models.UserInfo
 // WaitGroup 全局等待锁
 var WaitGroup sync.WaitGroup
+// ErrorSlice 错误信息变量
+var ErrorSlice = make([]error, 0)
+// 读写锁
+var ErrorSliceMutex sync.Mutex
