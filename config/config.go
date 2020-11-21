@@ -1,5 +1,6 @@
 package config
 
+// 配置结构体
 type Config struct {
 	User struct {
 		Mode  string `yaml:"mode"`
@@ -10,7 +11,7 @@ type Config struct {
 		Token struct {
 			DEDEUSERID string `yaml:"DEDEUSERID"`
 			SESSDATA   string `yaml:"SESSDATA"`
-			BILI_JCT   string `yaml:"BILI_JCT"`
+			BILIJCT    string `yaml:"BILIJCT"`
 		}
 	}
 	Home struct {

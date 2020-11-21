@@ -46,16 +46,16 @@ func SaveConfig(path string) error {
 }
 
 func EnvReader() error {
-	BILI_JCT := os.Getenv("BILI_JCT")
+	BILI_JCT := os.Getenv("BILIJCT")
 	DEDEUSERID := os.Getenv("DEDEUSERID")
 	SESSDATA := os.Getenv("SESSDATA")
 
 	if AppConfig.User.Mode == "token" {
-		if AppConfig.User.Token.BILI_JCT == "" {
+		if AppConfig.User.Token.BILIJCT == "" {
 			if BILI_JCT == "" {
 				return errors.ConfigError
 			} else {
-				AppConfig.User.Token.BILI_JCT = BILI_JCT
+				AppConfig.User.Token.BILIJCT = BILI_JCT
 			}
 		}
 

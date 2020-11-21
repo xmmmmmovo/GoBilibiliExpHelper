@@ -19,7 +19,7 @@ var onResponse = func(data *map[string]interface{}) (*map[string]interface{}, er
 func SetCookie(config *config.Config) {
 	cookies[0] = &http.Cookie{
 		Name:  "bili_jct",
-		Value: config.User.Token.BILI_JCT,
+		Value: config.User.Token.BILIJCT,
 	}
 	cookies[1] = &http.Cookie{
 		Name:  "DedeUserID",

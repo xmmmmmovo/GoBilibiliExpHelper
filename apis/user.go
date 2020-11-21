@@ -5,11 +5,13 @@ import (
 	"GoBilibiliExpHelper/models"
 )
 
+// 登陆操作
 func Login() {
 }
 
+// 获取用户信息操作
 func UserInfo() (*models.UserInfo, error) {
-	resp, err := http.GET(USER_INFO_URL)
+	resp, err := http.GET(UserInfoUrl)
 	if err != nil {
 		return nil, err
 	}
@@ -29,6 +31,7 @@ func UserInfo() (*models.UserInfo, error) {
 	}, nil
 }
 
+// 获取硬币数量操作
 func GetCoinNum() float64 {
 	return 0
 }
