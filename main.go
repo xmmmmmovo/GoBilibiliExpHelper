@@ -15,7 +15,8 @@ func main() {
 	}
 	err = config.EnvReader()
 	if err != nil {
-		log.Panicln(err.Error())
+		log.Fatalln(err.Error())
+		return
 	}
 	http.OnResponse(func(resp *map[string]interface{}) (*map[string]interface{}, error) {
 		data := * resp
@@ -27,7 +28,7 @@ func main() {
 	})
 	err = service.CheckUserModeAndFetchUserInfo()
 	if err != nil {
-		log.Panicln(err.Error())
+		log.Fatalln(err.Error())
 		return
 	}
 
