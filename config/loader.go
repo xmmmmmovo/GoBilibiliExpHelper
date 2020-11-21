@@ -49,33 +49,30 @@ func SaveConfig(path string) error {
 
 // EnvReader 读取环境
 func EnvReader() error {
-	BILI_JCT := os.Getenv("BILI_JCT")
+	BiliJct := os.Getenv("BILI_JCT")
 	DEDEUSERID := os.Getenv("DEDEUSERID")
 	SESSDATA := os.Getenv("SESSDATA")
 
 	if AppConfig.User.Mode == "token" {
 		if AppConfig.User.Token.BILIJCT == "" {
-			if BILI_JCT == "" {
+			if BiliJct == "" {
 				return errors.ConfigError
-			} else {
-				AppConfig.User.Token.BILIJCT = BILI_JCT
 			}
+			AppConfig.User.Token.BILIJCT = BiliJct
 		}
 
 		if AppConfig.User.Token.DEDEUSERID == "" {
 			if DEDEUSERID == "" {
 				return errors.ConfigError
-			} else {
-				AppConfig.User.Token.DEDEUSERID = DEDEUSERID
 			}
+			AppConfig.User.Token.DEDEUSERID = DEDEUSERID
 		}
 
 		if AppConfig.User.Token.SESSDATA == "" {
 			if SESSDATA == "" {
 				return errors.ConfigError
-			} else {
-				AppConfig.User.Token.SESSDATA = SESSDATA
 			}
+			AppConfig.User.Token.SESSDATA = SESSDATA
 		}
 	}
 
