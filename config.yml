@@ -4,9 +4,9 @@ user:
     username:
     password:
   token:
-    DEDEUSERID: 79e456f752e4471a
-    SESSDATA: 047cd688%2C1612000140%2C82ad1*81
-    BILI_JCT: 81a358275ea0b0d50cf22a3aa87ad47a
+    DEDEUSERID:
+    SESSDATA:
+    BILI_JCT:
 
 home:
   on: true

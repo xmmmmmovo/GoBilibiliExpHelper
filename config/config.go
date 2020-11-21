@@ -1,7 +1,5 @@
 package config
 
-import "GoBilibiliExpHelper/models"
-
 type Config struct {
 	User struct {
 		Mode  string `yaml:"mode"`
@@ -34,7 +32,3 @@ type Config struct {
 		}
 	}
 }
-
-var Path = ""
-var AppConfig = new(Config)
-var AppUser *models.UserInfo

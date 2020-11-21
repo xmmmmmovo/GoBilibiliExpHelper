@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '10 1 * * *'
     # cron表达式，Actions时区是UTC时间，所以上午9点要往前推8个小时
-
+    # 表达式参见：https://docs.github.com/cn/free-pro-team@latest/actions/reference/events-that-trigger-workflows#%E5%AE%89%E6%8E%92%E7%9A%84%E4%BA%8B%E4%BB%B6
 jobs:
   daily:
     runs-on: ubuntu-latest
@@ -30,4 +30,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       - run: make build
-      - run: ./build/main
+      - name: run
+        env:
+          BILI_JCT: ${{ secrets.BILI_JCT }}
+          DEDEUSERID: ${{ secrets.DEDEUSERID }}
+          SESSDATA: ${{ secrets.SESSDATA }}
+        run: ./build/main

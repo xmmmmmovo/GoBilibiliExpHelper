@@ -28,6 +28,10 @@ jobs:
             ${{ runner.os }}-go-
 
       - name: Run Unit tests.
+        env:
+          BILI_JCT: ${{ secrets.BILI_JCT }}
+          DEDEUSERID: ${{ secrets.DEDEUSERID }}
+          SESSDATA: ${{ secrets.SESSDATA }}
         run: make test-coverage
 
       - name: Upload Coverage report to CodeCov

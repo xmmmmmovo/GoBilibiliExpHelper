@@ -2,10 +2,14 @@ PROJECT_NAME := "."
 PKG := "$(PROJECT_NAME)"
 PKG_LIST := $(shell go list ${PKG}/... | grep -v /vendor/)
 GO_FILES := $(shell find . -name '*.go' | grep -v /vendor/ | grep -v _test.go)
+EXCLUDE_DIR := vendor,.idea
 
-.PHONY: all dep lint vet test test-coverage build clean
+.PHONY: all dep lint vet test test-coverage build clean cloc
 
 all: build
+
+cloc: ## cloc code lines
+	@cloc ${PROJECT_NAME} --exclude-dir ${EXCLUDE_DIR}
 
 dep: ## Get the dependencies
 	@go mod download
