@@ -38,7 +38,6 @@ func main() {
 	}
 	config.WaitGroup.Add(1)
 	go service.MangaSignIn()
-	
 	config.WaitGroup.Wait()
 	log.Println("输出错误信息：")
 	for k, v := range config.ErrorSlice {

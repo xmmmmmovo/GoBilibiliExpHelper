@@ -23,12 +23,13 @@ func GET(url string, params map[string]string, json interface{}) (*map[string]in
 }
 
 // POST 请求
-func POST(url string, params map[string]string, json interface{}) (*map[string]interface{}, error) {
+func POST(url string, params map[string]string, json interface{}, data map[string]string) (*map[string]interface{}, error) {
 	ro := &grequests.RequestOptions{
 		Cookies: cookies,
 		Headers: headers,
 		Params:  params,
 		JSON:    &json,
+		Data:    data,
 	}
 	res, err := grequests.Post(url, ro)
 	if err != nil {

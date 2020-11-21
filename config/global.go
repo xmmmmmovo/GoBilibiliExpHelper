@@ -13,5 +13,5 @@ var AppUser *models.UserInfo
 var WaitGroup sync.WaitGroup
 // ErrorSlice 错误信息变量
 var ErrorSlice = make([]error, 0)
-// 读写锁
+// ErrorSliceMutex 读写锁
 var ErrorSliceMutex sync.Mutex
