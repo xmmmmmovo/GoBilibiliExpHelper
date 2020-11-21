@@ -24,7 +24,7 @@ test: ## Run unittests
 	@go test -short ${PKG_LIST}
 
 test-coverage: ## Run tests with coverage
-	@go test -race -coverprofile=coverage.txt -covermode=atomic
+	@go test -coverprofile=coverage.txt -covermode=atomic ${PKG_LIST}
 
 build: dep ## Build the binary file
 	@go build -i -o build/main $(PKG)
