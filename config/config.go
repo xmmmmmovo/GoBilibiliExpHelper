@@ -1,6 +1,6 @@
 package config
 
-// 配置结构体
+// Config 配置结构体
 type Config struct {
 	User struct {
 		Mode  string `yaml:"mode"`

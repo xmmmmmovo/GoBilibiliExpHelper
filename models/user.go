@@ -1,5 +1,6 @@
 package models
 
+// UserInfo 用户信息结构体
 type UserInfo struct {
 	IsLogin       bool    // 是否登录
 	Uname         string  // 用户名
@@ -11,5 +12,6 @@ type UserInfo struct {
 	CouponBalance float64 // 每月奖励b币数
 }
 
+// UserLogin 用户登录结构体
 type UserLogin struct {
 }

@@ -9,6 +9,7 @@ import (
 	"os"
 )
 
+// LoadConfig 读取配置
 func LoadConfig(path string) error {
 	utils.PrintStart("读取配置")
 	fileBytes, err := ioutil.ReadFile(path)
@@ -26,6 +27,7 @@ func LoadConfig(path string) error {
 	return nil
 }
 
+// SaveConfig 写入配置
 func SaveConfig(path string) error {
 	utils.PrintStart("写入配置")
 
@@ -45,6 +47,7 @@ func SaveConfig(path string) error {
 	return nil
 }
 
+// EnvReader 读取环境
 func EnvReader() error {
 	BILI_JCT := os.Getenv("BILI_JCT")
 	DEDEUSERID := os.Getenv("DEDEUSERID")
