@@ -50,24 +50,29 @@ func EnvReader() error {
 	DEDEUSERID := os.Getenv("DEDEUSERID")
 	SESSDATA := os.Getenv("SESSDATA")
 
-	log.Println(BILI_JCT)
-	log.Println(DEDEUSERID)
-	log.Println(SESSDATA)
-
 	if AppConfig.User.Mode == "token" {
-		if AppConfig.User.Token.BILI_JCT == "" &&
-			BILI_JCT == "" {
-			return errors.ConfigError
+		if AppConfig.User.Token.BILI_JCT == "" {
+			if BILI_JCT == "" {
+				return errors.ConfigError
+			} else {
+				AppConfig.User.Token.BILI_JCT = BILI_JCT
+			}
 		}
 
-		if AppConfig.User.Token.DEDEUSERID == "" &&
-			DEDEUSERID == "" {
-			return errors.ConfigError
+		if AppConfig.User.Token.DEDEUSERID == "" {
+			if DEDEUSERID == "" {
+				return errors.ConfigError
+			} else {
+				AppConfig.User.Token.DEDEUSERID = DEDEUSERID
+			}
 		}
 
-		if AppConfig.User.Token.SESSDATA == "" &&
-			SESSDATA == "" {
-			return errors.ConfigError
+		if AppConfig.User.Token.SESSDATA == "" {
+			if SESSDATA == "" {
+				return errors.ConfigError
+			} else {
+				AppConfig.User.Token.SESSDATA = SESSDATA
+			}
 		}
 	}
 

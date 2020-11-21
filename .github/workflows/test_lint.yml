@@ -1,6 +1,6 @@
 name: Test And Lint
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   test:
@@ -29,9 +29,9 @@ jobs:
 
       - name: Run Unit tests.
         env:
-          BILI_JCT: 520466
-          DEDEUSERID: a31ed5f0%2C1621474470%2Cc44fc*b1
-          SESSDATA: 6c39c5bdb680d473a8f42066c54ae230
+          BILI_JCT: ${{ secrets.BILI_JCT }}
+          DEDEUSERID: ${{ secrets.DEDEUSERID }}
+          SESSDATA: ${{ secrets.SESSDATA }}
         run: make test-coverage
 
       - name: Upload Coverage report to CodeCov
