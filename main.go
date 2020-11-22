@@ -20,7 +20,7 @@ func main() {
 	}
 	http.OnResponse(func(resp *map[string]interface{}) (*map[string]interface{}, error) {
 		data := * resp
-		log.Println(data)
+		log.Println("响应: ", data)
 		switch data["code"].(type) {
 		case string:
 			return nil,
