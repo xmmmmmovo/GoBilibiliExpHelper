@@ -1,6 +1,10 @@
 package http
 
-import "github.com/levigross/grequests"
+import (
+	"bytes"
+	"github.com/levigross/grequests"
+	"mime/multipart"
+)
 
 // GET 请求
 func GET(url string, params map[string]string, json interface{}) (*map[string]interface{}, error) {
@@ -23,14 +27,49 @@ func GET(url string, params map[string]string, json interface{}) (*map[string]in
 }
 
 // POST 请求
-func POST(url string, params map[string]string, json interface{}, data map[string]string) (*map[string]interface{}, error) {
+func POST(url string, params map[string]string, json interface{}) (*map[string]interface{}, error) {
 	ro := &grequests.RequestOptions{
 		Cookies: cookies,
 		Headers: headers,
 		Params:  params,
 		JSON:    &json,
-		Data:    data,
 	}
+	res, err := grequests.Post(url, ro)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(map[string]interface{})
+	err = res.JSON(resp)
+	if err != nil {
+		return nil, err
+	}
+	return onResponse(resp)
+}
+
+// POSTFORM 请求FormData
+func POSTFORM(url string, params map[string]string, formData map[string]string) (*map[string]interface{}, error) {
+	body := new(bytes.Buffer)
+	w := multipart.NewWriter(body)
+	for k, v := range formData {
+		w.WriteField(k, v)
+	}
+	w.Close()
+
+	formHeader := map[string]string{
+		"Content-Type": w.FormDataContentType(),
+	}
+
+	for k, v := range headers {
+		formHeader[k] = v
+	}
+
+	ro := &grequests.RequestOptions{
+		Cookies:     cookies,
+		Headers:     formHeader,
+		Params:      params,
+		RequestBody: body,
+	}
+
 	res, err := grequests.Post(url, ro)
 	if err != nil {
 		return nil, err

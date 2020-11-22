@@ -20,12 +20,15 @@ func main() {
 	}
 	http.OnResponse(func(resp *map[string]interface{}) (*map[string]interface{}, error) {
 		data := * resp
+		log.Println(data)
 		switch data["code"].(type) {
 		case string:
-			return nil, errors.RespCodeError
+			return nil,
+				errors.New(errors.RespCodeErrorCode, data["msg"].(string))
 		case float64:
 			if int(data["code"].(float64)) != 0 {
-				return nil, errors.RespCodeError
+				return nil,
+					errors.New(errors.RespCodeErrorCode, data["msg"].(string))
 			}
 		}
 		r := data["data"].(map[string]interface{})
