@@ -2,17 +2,16 @@ package apis
 
 import (
 	"GoBilibiliExpHelper/http"
-	"log"
 )
 
 // MangaSignIn 漫画签到操作
-func MangaSignIn(platform string) {
-	res, err := http.POSTFORM(MangaSignInURL,
+func MangaSignIn(platform string) error {
+	_, err := http.POSTFORM(MangaSignInURL,
 		nil, map[string]string{
 			"platform": platform,
 		})
 	if err != nil {
-		log.Println(err.Error())
+		return err
 	}
-	log.Println(res)
+	return nil
 }
