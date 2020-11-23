@@ -14,4 +14,4 @@ var WaitGroup sync.WaitGroup
 // ErrorSlice 错误信息变量
 var ErrorSlice = make([]error, 0)
 // ErrorSliceMutex 读写锁
-var ErrorSliceMutex sync.Mutex
+var ErrorSliceMutex sync.RWMutex

@@ -27,8 +27,14 @@ func main() {
 				errors.New(errors.RespCodeErrorCode, data["msg"].(string))
 		case float64:
 			if int(data["code"].(float64)) != 0 {
+				eMsg := ""
+				if data["msg"] != nil {
+					eMsg = "msg"
+				} else {
+					eMsg = "message"
+				}
 				return nil,
-					errors.New(errors.RespCodeErrorCode, data["msg"].(string))
+					errors.New(errors.RespCodeErrorCode, data[eMsg].(string))
 			}
 		}
 		r := data["data"].(map[string]interface{})
@@ -39,8 +45,17 @@ func main() {
 		log.Println(err.Error())
 		return
 	}
-	config.WaitGroup.Add(1)
-	go service.MangaSignIn()
+	if config.AppConfig.Comic.On {
+		config.WaitGroup.Add(1)
+		go service.MangaCheckIn()
+	}
+	if config.AppConfig.Live.On {
+		config.WaitGroup.Add(1)
+		go service.LiveCheckIn()
+	}
+	if config.AppConfig.Home.On {
+
+	}
 	config.WaitGroup.Wait()
 	log.Println("输出错误信息：")
 	for k, v := range config.ErrorSlice {

@@ -4,9 +4,9 @@ import (
 	"GoBilibiliExpHelper/http"
 )
 
-// MangaSignIn 漫画签到操作
-func MangaSignIn(platform string) error {
-	_, err := http.POSTFORM(MangaSignInURL,
+// MangaCheckIn 漫画签到操作
+func MangaCheckIn(platform string) error {
+	_, err := http.POSTFORM(MangaCheckInURL,
 		nil, map[string]string{
 			"platform": platform,
 		})
