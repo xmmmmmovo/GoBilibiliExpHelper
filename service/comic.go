@@ -19,3 +19,9 @@ func MangaCheckIn() {
 	}
 	utils.PrintEnd("漫画签到")
 }
+
+// MangaVipReward 获取大会员福利
+func MangaVipReward() error {
+
+	return nil
+}

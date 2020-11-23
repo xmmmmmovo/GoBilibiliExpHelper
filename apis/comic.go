@@ -15,3 +15,9 @@ func MangaCheckIn(platform string) error {
 	}
 	return nil
 }
+
+// MangaVipReward 获取大会员福利操作
+func MangaVipReward() error {
+
+	return nil
+}

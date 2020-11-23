@@ -1,7 +1,7 @@
 package config
 
 // Config 配置结构体
-type Config struct {
+   type Config struct {
 	User struct {
 		Mode  string `yaml:"mode"`
 		Login struct {
@@ -15,7 +15,8 @@ type Config struct {
 		}
 	}
 	Home struct {
-		On bool `yaml:"on"`
+		On              bool `yaml:"on"`
+		LevelEnoughCoin bool `yaml:"level_enough_coin"`
 	}
 	Live struct {
 		On bool `yaml:"on"`
