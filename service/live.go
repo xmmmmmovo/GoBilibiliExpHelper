@@ -7,6 +7,7 @@ import (
 	"log"
 )
 
+// LiveCheckIn 直播签到
 func LiveCheckIn() {
 	defer config.WaitGroup.Done()
 	utils.PrintStart("直播签到")

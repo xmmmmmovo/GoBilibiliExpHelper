@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-// MangaCheckIn 漫漶签到
+// MangaCheckIn 漫画签到
 func MangaCheckIn() {
 	utils.PrintStart("漫画签到")
 	defer config.WaitGroup.Done()
