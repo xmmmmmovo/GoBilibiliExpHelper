@@ -17,10 +17,10 @@ func MangaCheckIn(platform string) error {
 }
 
 // MangaVipReward 获取大会员福利操作
-func MangaVipReward(reasonId int) (int, error) {
+func MangaVipReward(reasonID int) (int, error) {
 	res, err := http.POST(MangaVipRewardURL,
 		nil, map[string]int{
-			"reason_id": reasonId,
+			"reason_id": reasonID,
 		})
 	if err != nil {
 		return 0, err

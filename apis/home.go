@@ -6,10 +6,10 @@ import (
 )
 
 // HomeVipReward 获取大会员福利操作
-func HomeVipReward(typeId int, csrf string) error {
+func HomeVipReward(typeID int, csrf string) error {
 	_, err := http.POSTFORM(VipPrivilegeReceiveURL,
 		nil, map[string]string{
-			"type": strconv.Itoa(typeId),
+			"type": strconv.Itoa(typeID),
 			"csrf": csrf,
 		})
 	if err != nil {
