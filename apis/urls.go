@@ -11,4 +11,14 @@ const (
 	MangaCheckInURL = "https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn"
 	// LiveCheckInURL 直播签到URL
 	LiveCheckInURL = "https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign"
+	// MyVipPrivilegeURL 我的大会员权益URL
+	MyVipPrivilegeURL = "https://api.bilibili.com/x/vip/privilege/my"
+	// MangaVipRewardURL 漫画大会员福利URL
+	MangaVipRewardURL = "https://manga.bilibili.com/twirp/user.v1.User/GetVipReward"
+	// VipPrivilegeReceiveURL 领取大会员福利URL
+	VipPrivilegeReceiveURL = "https://api.bilibili.com/x/vip/privilege/receive"
+	// SilverToCoinStatusURL 银瓜子兑硬币状态URL
+	SilverToCoinStatusURL = "https://api.live.bilibili.com/pay/v1/Exchange/getStatus"
+	// SilverToCoinURL 银瓜子兑硬币URl
+	SilverToCoinURL = "https://api.live.bilibili.com/pay/v1/Exchange/silver2coin"
 )

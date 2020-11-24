@@ -21,7 +21,11 @@ func MangaCheckIn() {
 }
 
 // MangaVipReward 获取大会员福利
-func MangaVipReward() error {
-
-	return nil
+func MangaVipReward() {
+	defer config.WaitGroup.Done()
+	list, err := apis.GetVipPrivilegeList()
+	if err != nil {
+		log.Println(err.Error())
+	}
+	log.Println(list)
 }

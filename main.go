@@ -34,7 +34,7 @@ func main() {
 					eMsg = "message"
 				}
 				return nil,
-					errors.New(errors.RespCodeErrorCode, data[eMsg].(string))
+					errors.New(int(data["code"].(float64)), data[eMsg].(string))
 			}
 		}
 		r := data["data"].(map[string]interface{})
@@ -46,8 +46,11 @@ func main() {
 		return
 	}
 	if config.AppConfig.Comic.On {
-		config.WaitGroup.Add(1)
+		config.WaitGroup.Add(2)
 		go service.MangaCheckIn()
+		if config.AppUser.VipStatus == 1 && config.AppUser.VipType == 2 {
+			go service.MangaVipReward()
+		}
 	}
 	if config.AppConfig.Live.On {
 		config.WaitGroup.Add(1)

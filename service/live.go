@@ -3,7 +3,9 @@ package service
 import (
 	"GoBilibiliExpHelper/apis"
 	"GoBilibiliExpHelper/config"
+	"GoBilibiliExpHelper/errors"
 	"GoBilibiliExpHelper/utils"
+	"encoding/json"
 	"log"
 )
 
@@ -13,7 +15,9 @@ func LiveCheckIn() {
 	utils.PrintStart("直播签到")
 	err := apis.LiveCheckIn()
 	if err != nil {
-		if err.Error() != "{\"Code\":40001,\"Msg\":\"今日已签到过,无法重复签到\"}" {
+		e := errors.Err{}
+		err = json.Unmarshal([]byte(err.Error()), &e)
+		if e.Code == errors.RespCodeErrorCode {
 			config.ErrorSliceMutex.Lock()
 			config.ErrorSlice = append(config.ErrorSlice, err)
 			config.ErrorSliceMutex.Unlock()

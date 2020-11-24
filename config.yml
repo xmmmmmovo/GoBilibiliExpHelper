@@ -4,13 +4,14 @@ user:
     username:
     password:
   token:
-    DEDEUSERID: 
+    DEDEUSERID:
     SESSDATA:
-    BILI_JCT:
+    BILI_JCT: 
 
 home:
   on: true
   level_enough_coin: false
+  day: 1
 
 live:
   on: true
@@ -18,6 +19,7 @@ live:
 comic:
   on: true
   platform: ios
+  day: 1
 
 mail:
   on: true

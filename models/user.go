@@ -15,3 +15,10 @@ type UserInfo struct {
 // UserLogin 用户登录结构体
 type UserLogin struct {
 }
+
+// VipPrivilege 大会员权益列表
+type VipPrivilege struct {
+	Type       int `json:"type"`
+	State      int `json:"state"`
+	ExpireTime int `json:"expire_time"`
+}
