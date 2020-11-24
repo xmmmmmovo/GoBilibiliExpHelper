@@ -40,7 +40,7 @@ func GetCoinNum() (float64, error) {
 	return (*res)["money"].(float64), nil
 }
 
-// GetVipPrivilege 获取大会员权限列表
+// GetVipPrivilegeList 获取大会员权限列表
 func GetVipPrivilegeList() (*[]models.VipPrivilege, error) {
 	res, err := http.GET(MyVipPrivilegeURL, nil, nil)
 	if err != nil {

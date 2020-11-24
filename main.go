@@ -13,11 +13,13 @@ func main() {
 	if err != nil {
 		config.SaveConfig("./config.yml")
 	}
+
 	err = config.EnvReader()
 	if err != nil {
 		log.Println(err.Error())
 		return
 	}
+
 	http.OnResponse(func(resp *map[string]interface{}) (*map[string]interface{}, error) {
 		data := * resp
 		log.Println("响应: ", data)
@@ -40,29 +42,39 @@ func main() {
 		r := data["data"].(map[string]interface{})
 		return &r, nil
 	})
+
 	err = service.CheckUserModeAndFetchUserInfo()
 	if err != nil {
 		log.Println(err.Error())
 		return
 	}
+
 	if config.AppConfig.Comic.On {
-		config.WaitGroup.Add(2)
+		config.WaitGroup.Add(1)
 		go service.MangaCheckIn()
-		if config.AppUser.VipStatus == 1 && config.AppUser.VipType == 2 {
+		if config.CheckVipNeedRun() {
+			config.WaitGroup.Add(1)
 			go service.MangaVipReward()
+		} else {
+			log.Println("未达成大会员权益条件，跳过")
 		}
 	}
+
 	if config.AppConfig.Live.On {
 		config.WaitGroup.Add(1)
 		go service.LiveCheckIn()
 	}
+
 	if config.AppConfig.Home.On {
 
 	}
+
 	config.WaitGroup.Wait()
+
 	log.Println("输出错误信息：")
 	for k, v := range config.ErrorSlice {
 		log.Println(k, " : ", v.Error())
 	}
+	
 	log.Println("全部完成")
 }

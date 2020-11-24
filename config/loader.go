@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"time"
 )
 
 // LoadConfig 读取配置
@@ -77,4 +78,11 @@ func EnvReader() error {
 	}
 
 	return nil
+}
+
+// CheckVipNeedRun 检测大会员是否运行
+func CheckVipNeedRun() bool {
+	return AppUser.VipStatus == 1 &&
+		AppUser.VipType == 2 &&
+		AppConfig.Comic.Day == time.Now().Day()
 }
