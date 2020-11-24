@@ -25,7 +25,6 @@ type Config struct {
 	Comic struct {
 		On       bool   `yaml:"on"`
 		Platform string `yaml:"platform"`
-		Day      int    `yaml:"day"`
 	}
 	Mail struct {
 		On   bool   `yaml:"on"`

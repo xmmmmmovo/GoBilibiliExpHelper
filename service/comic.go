@@ -3,7 +3,9 @@ package service
 import (
 	"GoBilibiliExpHelper/apis"
 	"GoBilibiliExpHelper/config"
+	"GoBilibiliExpHelper/errors"
 	"GoBilibiliExpHelper/utils"
+	"encoding/json"
 	"log"
 )
 
@@ -22,10 +24,30 @@ func MangaCheckIn() {
 
 // MangaVipReward 获取大会员福利
 func MangaVipReward() {
+	utils.PrintStart("领取漫画大会员福利")
 	defer config.WaitGroup.Done()
 	list, err := apis.GetVipPrivilegeList()
 	if err != nil {
-		log.Println(err.Error())
+		log.Println("漫画Vip领取出现问题")
+		config.ErrorSliceMutex.Lock()
+		config.ErrorSlice = append(config.ErrorSlice, err)
+		config.ErrorSliceMutex.Unlock()
 	}
-	log.Println(list)
+	for _, v := range *list {
+		amount, err := apis.MangaVipReward(v.Type)
+		if err != nil {
+			e := errors.Err{}
+			err = json.Unmarshal([]byte(err.Error()), &e)
+			if e.Code != errors.HasReceviedRewardManga {
+				config.ErrorSliceMutex.Lock()
+				config.ErrorSlice = append(config.ErrorSlice, err)
+				config.ErrorSliceMutex.Unlock()
+			} else {
+				log.Println("不能重复领取大会员福利！")
+			}
+			continue
+		}
+		log.Println("已领取：", amount, "会员券")
+	}
+	utils.PrintEnd("领取漫画大会员福利")
 }

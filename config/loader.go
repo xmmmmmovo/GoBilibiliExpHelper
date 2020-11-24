@@ -84,5 +84,5 @@ func EnvReader() error {
 func CheckVipNeedRun() bool {
 	return AppUser.VipStatus == 1 &&
 		AppUser.VipType == 2 &&
-		AppConfig.Comic.Day == time.Now().Day()
+		AppConfig.Home.Day == time.Now().Day()
 }

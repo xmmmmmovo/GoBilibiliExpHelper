@@ -66,7 +66,12 @@ func main() {
 	}
 
 	if config.AppConfig.Home.On {
-
+		if config.CheckVipNeedRun() {
+			config.WaitGroup.Add(1)
+			go service.HomeVipReward()
+		} else {
+			log.Println("未达成大会员权益条件，跳过")
+		}
 	}
 
 	config.WaitGroup.Wait()
@@ -75,6 +80,6 @@ func main() {
 	for k, v := range config.ErrorSlice {
 		log.Println(k, " : ", v.Error())
 	}
-	
+
 	log.Println("全部完成")
 }
