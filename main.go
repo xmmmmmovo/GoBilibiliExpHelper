@@ -39,6 +39,17 @@ func main() {
 					errors.New(int(data["code"].(float64)), data[eMsg].(string))
 			}
 		}
+		switch data["data"].(type) {
+		case nil:
+			eMsg := ""
+			if data["msg"] != nil {
+				eMsg = "msg"
+			} else {
+				eMsg = "message"
+			}
+			return nil,
+				errors.New(int(data["code"].(float64)), data[eMsg].(string))
+		}
 		r := data["data"].(map[string]interface{})
 		return &r, nil
 	})
